@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  uid: 1
+  realname: MyString
+  department: MyString
+  project: MyString
+  type: 
+  money: MyString
+  captital: MyString
+  advance: MyString
+  ac_expend: MyString
+  difference: MyString
+  status: 1
+  step_uid: 1
+  step_user: MyString
+  des: MyText
+
+two:
+  uid: 1
+  realname: MyString
+  department: MyString
+  project: MyString
+  type: 
+  money: MyString
+  captital: MyString
+  advance: MyString
+  ac_expend: MyString
+  difference: MyString
+  status: 1
+  step_uid: 1
+  step_user: MyString
+  des: MyText
