@@ -86,4 +86,9 @@ img { border-radius: 3px; }
 
 .login form input {
     height: 30px;
+    border-width: 2px;
+}
+
+.navbar .nav > li > a  {
+    color: #DDD;
 }

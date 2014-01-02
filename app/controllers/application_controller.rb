@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
     before_filter :check_session
     
-    skip_before_filter :check_session, :only=> [:login]
+    skip_before_filter :check_session, :only=> [:login, :do_login]
 
     def check_session
         unless session[:uid]

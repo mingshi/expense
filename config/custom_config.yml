@@ -1,0 +1,9 @@
+development:
+    auth_login_url  :   "http://member.adeaz.com/api/login"
+    auth_login_key  :   "7d26eda13b33c1257999de31bcd8ebfc"
+    auth_sign_key   :   "adeazMemberSigKey@#$%^&"
+
+production:
+    auth_login_url  :   "http://member.adeaz.com/api/login"
+    auth_login_key  :   "7d26eda13b33c1257999de31bcd8ebfc"
+    auth_sign_key   :   "adeazMemberSigKey@#$%^&"
