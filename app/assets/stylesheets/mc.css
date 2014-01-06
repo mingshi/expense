@@ -92,3 +92,7 @@ img { border-radius: 3px; }
 .navbar .nav > li > a  {
     color: #DDD;
 }
+
+.table th, .table td {
+    text-align: center;
+}

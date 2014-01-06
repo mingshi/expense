@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131230092302) do
+ActiveRecord::Schema.define(version: 20140106055325) do
+
+  create_table "expenses", force: true do |t|
+    t.string   "money"
+    t.string   "borrow"
+    t.string   "realoffs"
+    t.string   "spread"
+    t.integer  "status"
+    t.string   "step"
+    t.string   "capital"
+    t.integer  "step_uid"
+    t.string   "step_realname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "posts", force: true do |t|
     t.integer  "uid"
@@ -20,14 +34,8 @@ ActiveRecord::Schema.define(version: 20131230092302) do
     t.string   "project"
     t.string   "type"
     t.string   "money"
-    t.string   "captital"
-    t.string   "advance"
-    t.string   "ac_expend"
-    t.string   "difference"
-    t.integer  "status"
-    t.integer  "step_uid"
-    t.string   "step_user"
     t.text     "des"
+    t.integer  "eid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

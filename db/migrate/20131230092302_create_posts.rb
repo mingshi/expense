@@ -7,14 +7,8 @@ class CreatePosts < ActiveRecord::Migration
       t.string :project
       t.string :type
       t.string :money
-      t.string :captital
-      t.string :advance
-      t.string :ac_expend
-      t.string :difference
-      t.integer :status
-      t.integer :step_uid
-      t.string :step_user
       t.text :des
+      t.integer :eid
 
       t.timestamps
     end

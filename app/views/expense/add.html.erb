@@ -1,0 +1,92 @@
+<style type="text/css">
+    #total { font-weight: bold; }
+</style>
+<script src="/assets/jquery.autocomplete.js"></script>
+<div style="width:75%; margin:auto;">
+    <form class="form-horizontal" action="<%= do_add_ex_path %>" method="post" autocomplete="off">
+        <fieldset>
+            <legend>创建新的报销单
+            
+                <span style="float:right;"><a type="button" class="btn btn-info" id="addTr">增加一行</a></a>
+            </legend>
+        </fieldset>
+        
+        <table id="addTable" class="table table-bordered table-striped">
+            <thead>
+                <th>摘要</th>
+                <th>受益部门</th>
+                <th>所属项目</th>
+                <th>费用类型</th>
+                <th>金额</th>
+                <th style="width:100px;">操作</th>
+            </thead>
+            <tbody id="realTr">
+                <% for i in 0..1 %>
+                    <tr>
+                        <td><input name="des" /></td>
+                        <td><input name="department" /></td>
+                        <td><input name="project" /></td>
+                        <td><input name="type" /></td>
+                        <td><input name="money" id="money" /></td>
+                        <td style="width:100px; text-align: center;"><a href="#" onclick="del_tr($(this));" title="删除本行" class="del_tr"><i class="icon-minus-sign"></i></a></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+        
+        <table id="baseInfo" class="table table-bordered table-striped">
+            <tbody id="tBody">
+                <tr>
+                    <td>合计:</td>
+                    <td id="total"></td>
+
+                    <td>金额合计大写:</td>
+                    <td><input style="width:100px;" name="capital" /></td>
+
+                    <td>现金借支:</td>
+                    <td><input name="borrow" style="width:100px;" /></td>
+
+                    <td>核销:</td>
+                    <td><input style="width:100px;" name="realoffs" /></td>
+
+                    <td>退补:</td>
+                    <td><input name="spread" style="width:100px;" /></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="text-align: center;">
+            提交给谁?
+            <button id="do_add" class="btn btn-primary btn-large" type="submit">提交</button>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        $("#addTr").click(function() {
+            var this_tbody = $("#realTr");
+            var add_html = '<tr><td><input name="des" /></td><td><input name="department" /></td><td><input name="project" /></td><td><input name="type" /></td><td><input name="money" id="money" /></td><td style="width:100px; text-align: center;"><a href="#" title="删除本行" class="del_tr" onclick="del_tr($(this));"><i class="icon-minus-sign"></i></a></td></tr>';
+            this_tbody.append(add_html);
+        });
+
+        setInterval(function() {
+            var totalMoney = 0;
+            $("#realTr").children().each(function() {
+                if (typeof($(this).find('input#money').val()) != "undefined") {
+                    totalMoney = (totalMoney - 0) + ($(this).find('input#money').val() - 0);
+                }
+            });
+
+            var num = "&#65509;" + " " + Math.round(totalMoney*100) / 100 + " 元";
+
+            $("#total").html(num);
+        }, 1000);
+
+    });
+
+function del_tr(a) {
+    return a.parent().parent().remove();
+}
+
+</script>

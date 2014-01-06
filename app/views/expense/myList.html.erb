@@ -1,2 +1,35 @@
-<h1>Expense#myList</h1>
-<p>Find me in app/views/expense/myList.html.erb</p>
+<div style="width:65%; margin:auto;">
+    <div class="tabbable">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1" data-toggle="tab">审批中</a></li>
+            <li><a href="#tab2" data-toggle="tab">已审批</a></li>
+            <li><a href="#tab3" data-toggle="tab">被驳回</a></li>
+            <li><a href="#tab4" data-toggle="tab">全部</a></li>
+            <a class="btn btn-primary" href="<%= add_expense_url %>" style="float:right">提交报销单</a>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab1">
+                审批中的...
+            </div>
+            <div class="tab-pane" id="tab2">
+                已审批的...
+            </div>
+            <div class="tab-pane" id="tab3">
+                被驳回的...
+            </div>
+            <div class="tab-pane" id="tab4">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <th>编号</th>
+                        <th>金额</th>
+                        <th>借支</th>
+                        <th>核销</th>
+                        <th>退补</th>
+                        <th>阶段</th>
+                        <th>操作</th>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
