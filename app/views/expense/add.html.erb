@@ -4,13 +4,12 @@
         background: white url('/assets/ui-anim_basic_16x16.gif') right center no-repeat;
     }
 </style>
-<script src="/assets/autocomplete-ui/jquery.ui.core.js"></script>
-<script src="/assets/autocomplete-ui/jquery.ui.widget.js"></script>
-<script src="/assets/autocomplete-ui/jquery.ui.position.js"></script>
-<script src="/assets/autocomplete-ui/jquery.ui.menu.js"></script>
-<script src="/assets/autocomplete-ui/jquery.ui.autocomplete.js"></script>
+
+<%= stylesheet_link_tag "autocomplete/jquery.ui.all", media: "all", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "autocomplete-ui/jquery.ui.core", "autocomplete-ui/jquery.ui.widget", "autocomplete-ui/jquery.ui.position", "autocomplete-ui/jquery.ui.menu", "autocomplete-ui/jquery.ui.autocomplete", "data-turbolinks-track" => true %>
+
 <div style="width:75%; margin:auto;">
-    <form class="form-horizontal" action="<%= do_add_ex_path %>" method="post" autocomplete="off">
+    <form class="form-horizontal" action="<%= do_add_expense_path %>" method="post" autocomplete="off">
         <fieldset>
             <legend>创建新的报销单
             

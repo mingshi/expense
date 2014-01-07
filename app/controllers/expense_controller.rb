@@ -7,7 +7,9 @@ class ExpenseController < ApplicationController
     end
 
     def add
-
+        if request.method == "POST"
+            
+        end
     end
 
     def get_json_user
