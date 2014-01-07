@@ -1,9 +1,17 @@
 development:
-    auth_login_url  :   "http://member.adeaz.com/api/login"
-    auth_login_key  :   "7d26eda13b33c1257999de31bcd8ebfc"
-    auth_sign_key   :   "adeazMemberSigKey@#$%^&"
+    auth_login_url      :   "http://member.adeaz.com/api/login"
+    auth_login_key      :   "7d26eda13b33c1257999de31bcd8ebfc"
+    auth_sign_key       :   "adeazMemberSigKey@#$%^&"
+    
+    search_user_url     :   "http://member.adeaz.com/api/apisearchuser"
+    search_user_key     :   "8cc59b4056aae8d50091ec8647127105"
+    search_user_sign    :   "7f54de2f8ef0ae3c885431acf30f2839"
 
 production:
-    auth_login_url  :   "http://member.adeaz.com/api/login"
-    auth_login_key  :   "7d26eda13b33c1257999de31bcd8ebfc"
-    auth_sign_key   :   "adeazMemberSigKey@#$%^&"
+    auth_login_url      :   "http://member.adeaz.com/api/login"
+    auth_login_key      :   "7d26eda13b33c1257999de31bcd8ebfc"
+    auth_sign_key       :   "adeazMemberSigKey@#$%^&"
+
+    search_user_url     :   "http://member.adeaz.com/api/apisearchuser"
+    search_user_key     :   "8cc59b4056aae8d50091ec8647127105"
+    search_user_sign    :   "7f54de2f8ef0ae3c885431acf30f2839"

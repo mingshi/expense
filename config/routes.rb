@@ -8,4 +8,5 @@ Expense::Application.routes.draw do
     get '/logout'   =>  'accounts#logout', as: 'logout'
     get '/expense/add'  =>  'expense#add', as: 'add_expense'
     post '/expense/do_add' => 'expense#do_add', as: 'do_add_ex'
+    get '/expense/get_json_user' => 'expense#get_json_user', as: 'jsonUser'
 end
