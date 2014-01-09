@@ -8,7 +8,6 @@ class ExpenseController < ApplicationController
 
     def add
         if request.method == "POST"
-            
         end
     end
 
