@@ -1,6 +1,7 @@
-class CreateExposes < ActiveRecord::Migration
+class CreateExes < ActiveRecord::Migration
   def change
-    create_table :expenses do |t|
+    create_table :exes do |t|
+      t.integer :uid
       t.string :money
       t.string :borrow
       t.string :realoffs

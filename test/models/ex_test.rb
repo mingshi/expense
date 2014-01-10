@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ExposeTest < ActiveSupport::TestCase
+class ExTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

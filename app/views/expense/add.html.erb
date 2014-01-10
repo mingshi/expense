@@ -29,11 +29,11 @@
             <tbody id="realTr">
                 <% for i in 0..1 %>
                     <tr>
-                        <td><input name="des" /></td>
-                        <td><input name="department" /></td>
-                        <td><input name="project" /></td>
-                        <td><input name="type" /></td>
-                        <td><input name="money" id="money" /></td>
+                        <td><input name="des[]" /></td>
+                        <td><input name="department[]" /></td>
+                        <td><input name="project[]" /></td>
+                        <td><input name="type[]" /></td>
+                        <td><input name="money[]" id="money" /></td>
                         <td style="width:100px; text-align: center;"><a href="#" onclick="del_tr($(this));" title="删除本行" class="del_tr"><i class="icon-minus-sign"></i></a></td>
                     </tr>
                 <% end %>
