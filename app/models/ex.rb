@@ -1,5 +1,4 @@
 class Ex < ActiveRecord::Base
-    has_many :posts
     validates :uid, presence: true, numericality: { only_integer: true }
     validates :money, presence: true
     validates :status, numericality: true, presence: true

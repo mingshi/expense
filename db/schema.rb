@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20140110094706) do
     t.string   "realname"
     t.string   "department"
     t.string   "project"
-    t.string   "type"
+    t.string   "p_type"
     t.string   "money"
     t.text     "des"
     t.integer  "eid"

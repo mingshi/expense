@@ -29,11 +29,11 @@
             <tbody id="realTr">
                 <% for i in 0..1 %>
                     <tr>
-                        <td><input name="des[]" /></td>
-                        <td><input name="department[]" /></td>
-                        <td><input name="project[]" /></td>
-                        <td><input name="type[]" /></td>
-                        <td><input name="money[]" id="money" /></td>
+                        <td><input name="posts[des][]" /></td>
+                        <td><input name="posts[department][]" /></td>
+                        <td><input name="posts[project][]" /></td>
+                        <td><input name="posts[p_type][]" /></td>
+                        <td><input name="posts[money][]" id="money" /></td>
                         <td style="width:100px; text-align: center;"><a href="#" onclick="del_tr($(this));" title="删除本行" class="del_tr"><i class="icon-minus-sign"></i></a></td>
                     </tr>
                 <% end %>
@@ -47,22 +47,23 @@
                     <td id="total"></td>
 
                     <td>金额合计大写:</td>
-                    <td><input style="width:100px;" name="capital" /></td>
+                    <td><input style="width:100px;" name="expense[capital]" /></td>
 
                     <td>现金借支:</td>
-                    <td><input name="borrow" style="width:100px;" /></td>
+                    <td><input name="expense[borrow]" style="width:100px;" /></td>
 
                     <td>核销:</td>
-                    <td><input style="width:100px;" name="realoffs" /></td>
+                    <td><input style="width:100px;" name="expense[realoffs]" /></td>
 
                     <td>退补:</td>
-                    <td><input name="spread" style="width:100px;" /></td>
+                    <td><input name="expense[spread]" style="width:100px;" /></td>
                 </tr>
             </tbody>
         </table>
 
         <div style="text-align: center;">
             提交给谁?<span style="margin-left:10px;"><input type="text" name="step" id="step" style="width:120px;" placeholder="姓名拼音" /></span>
+            <input type="hidden" name="post[uid]" />
             <button id="do_add" class="btn btn-primary btn-large" type="submit" style="margin-left:30px;">提交</button>
         </div>
     </form>
@@ -72,7 +73,7 @@
     $(function(){
         $("#addTr").click(function() {
             var this_tbody = $("#realTr");
-            var add_html = '<tr><td><input name="des" /></td><td><input name="department" /></td><td><input name="project" /></td><td><input name="type" /></td><td><input name="money" id="money" /></td><td style="width:100px; text-align: center;"><a href="#" title="删除本行" class="del_tr" onclick="del_tr($(this));"><i class="icon-minus-sign"></i></a></td></tr>';
+            var add_html = '<tr><td><input name="posts[des][]" /></td><td><input name="posts[department][]" /></td><td><input name="posts[project][]" /></td><td><input name="posts[p_type][]" /></td><td><input name="posts[money][]" id="money" /></td><td style="width:100px; text-align: center;"><a href="#" title="删除本行" class="del_tr" onclick="del_tr($(this));"><i class="icon-minus-sign"></i></a></td></tr>';
             this_tbody.append(add_html);
         });
 

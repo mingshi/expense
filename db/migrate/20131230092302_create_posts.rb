@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :realname
       t.string :department
       t.string :project
-      t.string :type
+      t.string :p_type
       t.string :money
       t.text :des
       t.integer :eid
