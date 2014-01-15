@@ -1,0 +1,152 @@
+<%= stylesheet_link_tag "autocomplete/jquery.ui.all", media: "all", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "autocomplete-ui/jquery.ui.core", "autocomplete-ui/jquery.ui.widget", "autocomplete-ui/jquery.ui.position", "autocomplete-ui/jquery.ui.menu", "autocomplete-ui/jquery.ui.autocomplete", "data-turbolinks-track" => true %>
+<div style="width:75%; margin:auto;">
+    <fieldset>
+        <legend>报销单详情
+            <% if @check == 1 %>   
+                <% if @ex.status.to_i == CONFIG["init_status"].to_i %>
+                    <span style="margin-left:100px">目前<b style="font-size:30px;" class="text-info"><%= @ex.step_realname %></b>在审批 ^V^   耐心等待哦...</span>
+                <% elsif @ex.status.to_i == CONFIG["checked_status"].to_i %>
+                    <span style="margin-left:100px"><b class="text-success">已经审批通过，请等待发款</b></span>
+                <% elsif @ex.status.to_i == CONFIG["reject_status"].to_i %>
+                    <span style="margin-left:100px"><b class="text-error">这个报销被驳回了，请根据原因进行修改后重新提交</b></span>
+                <% elsif @ex.status.to_i == CONFIG["complete_status"].to_i %>
+                    <span style="margin-left:100px"><b class="text-success">这个报销已经结束啦 ^V^</b></span>
+                <% end %>
+            <% end %>
+        </legend>
+    </fieldset>
+
+    <table id="addTable" class="table table-bordered table-striped">
+        <thead>
+            <th>摘要</th>
+            <th>受益部门</th>
+            <th>所属项目</th>
+            <th>费用类型</th>
+            <th>金额</th>
+        </thead>
+        <tbody>
+            <% if @check == 1 %>
+                <% @posts.each do |post| %>
+                    <tr>
+                        <td><input type="text" readonly value="<%= post.des %>"></td>
+                        <td><input type="text" readonly value="<%= post.department %>"></td>
+                        <td><input type="text" readonly value="<%= post.project %>"></td>
+                        <td><input type="text" readonly value="<%= post.p_type %>"></td>
+                        <td><input type="text" readonly value="<%= post.money %>"></td>
+                    </tr>
+                <% end %>
+            <% end %>
+        </tbody>
+    </table>
+
+    <table id="baseInfo" class="table table-bordered table-striped">
+        <tbody id="tBody">
+            <% if @check == 1 %>
+                <tr>
+                    <td>合计:</td>
+                    <td id="total"><input type="text" readonly value="<%= @ex.money %>"></td>
+
+                    <td>金额合计大写:</td>
+                    <td><input style="width:100px;" readonly value="<%= @ex.capital %>" /></td>
+
+                    <td>现金借支:</td>
+                    <td><input readonly value="<%= @ex.borrow %>" style="width:100px;" /></td>
+
+                    <td>核销:</td>
+                    <td><input style="width:100px;" readonly value="<%= @ex.realoffs %>" /></td>
+
+                    <td>退补:</td>
+                    <td><input readonly value="<%= @ex.spread %>" style="width:100px;" /></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+    <% if @ex.status.to_i == CONFIG["init_status"].to_i && @ex.step_uid == session[:uid] && @ex.uid != session[:uid] %>
+        <fieldset>
+            <legend>
+                审批域
+            </legend>
+        </fieldset>
+        <form class="form-horizontal" action="<%= do_check_expense_path %>" method="post" autocomplete="off">
+            <table id="baseInfo" class="table table-bordered table-striped">
+                <tbody id="tBody">
+                    <tr>
+                        <td>状态</td>
+                        <td>
+                            <input type="radio" name="status" value="0" checked /> 审批中
+                            <input type="radio" name="status" value="1" /> 通过
+                            <input type="radio" name="status" value="-1" />驳回
+                            <input type="radio" name="status" value="2" /> 结束
+                        </td>
+
+                        <td>批语</td>
+                        <td><input type="text" name="info" ></td>
+
+                        <td>转给谁</td>
+                        <td><input type="text" name="step" id="step" style="width:120px;" placeholder="姓名拼音" /></td>
+                        
+                        <td><button class="btn btn-primary" type="submit">提交</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    <% end %>
+
+
+    <fieldset>
+        <legend>
+            审批轴
+        </legend>
+    </fieldset>
+    
+    <% if @checks %>
+        <div style="width:75%;">
+            <ul class="timeline">
+                <% @checks.each do |check| %>
+                    <li>
+                        <div class="time"><%= generate_date(check.created_at.to_s) %></div>
+                        <div class="version"><%= generate_time(check.created_at.to_s) %></div>
+                        <div class="number"></div>
+                        <div class="content">
+                            <pre><%= check.realname %>:<%= check.info %></pre>
+                        </div>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+</div>
+
+<script>
+    $(function() {
+        var liNodes = $('ul.timeline li'), count = liNodes.length, i, liNode;
+        for(i=0; i<count; i++) {
+            liNode = $(liNodes.get(i));
+            if(i % 2 !== 0) {
+                liNode.addClass('alt');
+            }
+            liNode.find('.number').text(count - i);
+        }
+
+        var cache = {};
+
+        $("#step").autocomplete({
+            minLength: 2,
+            source: function( request, response ) {
+                var term = request.term;
+                if ( term in cache ) {
+                    response( cache[ term ] );
+                    return;
+                }
+
+                $.getJSON("<%= jsonUser_path %>", request, function(data, status, xhr){
+                    cache[ term ] = data;
+                    response( data );
+                });
+            }
+        });
+    });
+</script>

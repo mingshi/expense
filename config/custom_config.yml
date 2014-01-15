@@ -11,6 +11,7 @@ development:
     checked_status      :   "1"
     reject_status       :   "-1"
     complete_status     :   "2"
+    finance             :   [1]
 
 production:
     auth_login_url      :   "http://member.adeaz.com/api/login"
@@ -25,3 +26,4 @@ production:
     checked_status      :   "1"
     reject_status       :   "-1"
     complete_status     :   "2"
+    finance             :   [1]

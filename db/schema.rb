@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140110094706) do
+ActiveRecord::Schema.define(version: 20140115070108) do
+
+  create_table "checks", force: true do |t|
+    t.integer  "uid"
+    t.text     "info"
+    t.integer  "eid"
+    t.string   "realname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "exes", force: true do |t|
     t.integer  "uid"

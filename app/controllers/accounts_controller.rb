@@ -40,6 +40,10 @@ class AccountsController < ApplicationController
                     end
                 end
             end
+        else 
+            if session[:uid]  
+                redirect_to root_url
+            end
         end
     end
 

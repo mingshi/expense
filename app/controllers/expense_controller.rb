@@ -24,11 +24,32 @@ class ExpenseController < ApplicationController
         @ManageComplete = Ex.where("step_uid = ? AND status = ?", uid, CONFIG["complete_status"]).order("updated_at DESC")
     end
 
+    def show
+        @check = 0
+        unless check_permission(params[:id])
+            @msg = Hash.new
+            @msg["info"] = "你没有权限查看该记录"
+            @msg["type"] = "error"
+        else
+            @check = 1
+            uid = session[:uid]
+            @ex = Ex.find(params[:id])
+            @posts = Post.where("eid = ?", params[:id]).order("updated_at DESC")
+            @checks = Check.where("eid = ?", params[:id]).order("created_at DESC")
+        end
+    end
+   
+    def do_check
+        if request.method == "POST" 
+            
+        end
+    end
+
     def add
         if request.method == "POST"
 
             params[:expense][:uid] = session[:uid]
-            params[:expense][:created_at] = Time.new.strftime("%Y-%m-%d %H:%M:%S");
+            params[:expense][:created_at] = Time.new.strftime("%Y-%m-%d %H:%M:%S")
             params[:expense][:status] = 0
 
             stepArr = params[:step].split(' ')
@@ -117,5 +138,15 @@ class ExpenseController < ApplicationController
 
         def render_to_root
             render :controller => 'expense', :action => 'myList'
+        end
+
+        def check_permission(id)
+            uid = session[:uid]
+            if tmpEx = Ex.find_by_id(id)
+                return uid == tmpEx.uid || uid == tmpEx.step_uid 
+                # || (CONFIG["finance"].include? uid.to_s)
+            else 
+                return false
+            end
         end
 end

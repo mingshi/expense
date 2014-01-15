@@ -12,4 +12,5 @@ Expense::Application.routes.draw do
     get "/expense/edit/:id"   =>  'expense#edit', as: 'editEx', :constraints => {:id => /\d/}
     get "/expense/show/:id"   =>  'expense#show', as: 'showEx', :constraints => {:id => /\d/}
     get '/expense/myManage' =>  'expense#myManage', as: 'exManage'
+    post '/expense/do_check'    =>  'expense#do_check', as: 'do_check_expense'
 end

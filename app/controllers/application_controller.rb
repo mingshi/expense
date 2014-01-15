@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
     before_filter :check_session
     
     skip_before_filter :check_session, :only=> [:login, :do_login]
+    
+    include ExpenseHelper
 
     def check_session
         unless session[:uid]
