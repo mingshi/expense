@@ -14,8 +14,8 @@
                 <div class="nav-collapse">
                     <% if session.has_key?("realname") %>
                         <ul class="nav">
-                            <li><a href="<%= root_url %>">我的报销</a></li>
-                            <li><a href="/expense/myManage">我的批示</a></li>
+                            <li><a href="<%= root_url %>" <% if @menu == "list" %> style="color:#FFF" <% end %>>我的报销</a></li>
+                            <li><a href="/expense/myManage" <% if @menu == "manage" %> style="color:#FFF" <% end %>>我的批示</a></li>
                         </ul>
                     <% end %>
                 </div>

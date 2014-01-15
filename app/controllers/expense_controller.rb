@@ -1,14 +1,27 @@
 class ExpenseController < ApplicationController
     include SearchUser
     def myList
+        @menu = "list"
         uid = session["uid"]
         if params[:hova] == "1"
             @msg = Hash.new
             @msg["info"] = "提交成功"
             @msg["type"] = "succ"
         end
-        @myList = Post.where("uid = ?", uid).order("updated_at DESC")
-         
+        @myList = Ex.where("uid = ?", uid).order("updated_at DESC")
+        @myInit = Ex.where("uid = ? AND status = ?", uid, CONFIG["init_status"]).order("updated_at DESC")
+        @myChecked = Ex.where("uid = ? AND status = ?", uid, CONFIG["checked_status"]).order("updated_at DESC")
+        @myReject = Ex.where("uid = ? AND status = ?", uid, CONFIG["reject_status"]).order("updated_at DESC")
+        @myComplete = Ex.where("uid = ? AND status = ?", uid, CONFIG["complete_status"]).order("updated_at DESC")
+    end
+    
+    def myManage
+        @menu = "manage"
+        uid = session[:uid]
+        @ManageInit = Ex.where("step_uid = ? AND status = ?", uid, CONFIG["init_status"]).order("updated_at DESC")
+        @ManageReject = Ex.where("step_uid = ? AND status = ?", uid, CONFIG["reject_status"]).order("updated_at DESC")
+        @ManageChecked = Ex.where("step_uid = ? AND status = ?", uid, CONFIG["checked_status"]).order("updated_at DESC")
+        @ManageComplete = Ex.where("step_uid = ? AND status = ?", uid, CONFIG["complete_status"]).order("updated_at DESC")
     end
 
     def add
@@ -26,7 +39,8 @@ class ExpenseController < ApplicationController
             post_num = 0
             totalMoney = 0
             params[:posts][:des].each_with_index do |d, index|
-                unless params[:posts][:des][index].to_s.strip.length == 0 && params[:posts][:department][index].to_s.strip.length == 0 && params[:posts][:project][index].to_s.strip.length == 0 && params[:posts][:type][index].to_s.strip.length == 0 && params[:posts][:money][index].to_s.strip.length == 0
+                p params[:posts]
+                if params[:posts][:des][index].to_s.strip.length != 0 && params[:posts][:department][index].to_s.strip.length != 0 && params[:posts][:project][index].to_s.strip.length != 0 && params[:posts][:p_type][index].to_s.strip.length != 0 && params[:posts][:money][index].to_s.strip.length != 0
                     totalMoney += params[:posts][:money][index].to_f
                     post_num += 1
                 end

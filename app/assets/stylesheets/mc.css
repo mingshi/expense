@@ -96,3 +96,15 @@ img { border-radius: 3px; }
 .table th, .table td {
     text-align: center;
 }
+
+.text-info {
+    color: #3A87AD;
+}
+
+.text-success {
+    color: #468847;
+}
+
+.text-error {
+    color: #B94A48;
+}

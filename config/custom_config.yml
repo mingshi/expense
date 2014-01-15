@@ -6,6 +6,11 @@ development:
     search_user_url     :   "http://member.adeaz.com/api/apisearchuser"
     search_user_key     :   "8cc59b4056aae8d50091ec8647127105"
     search_user_sign    :   "7f54de2f8ef0ae3c885431acf30f2839"
+    
+    init_status         :   "0"
+    checked_status      :   "1"
+    reject_status       :   "-1"
+    complete_status     :   "2"
 
 production:
     auth_login_url      :   "http://member.adeaz.com/api/login"
@@ -15,3 +20,8 @@ production:
     search_user_url     :   "http://member.adeaz.com/api/apisearchuser"
     search_user_key     :   "8cc59b4056aae8d50091ec8647127105"
     search_user_sign    :   "7f54de2f8ef0ae3c885431acf30f2839"
+    
+    init_status         :   "0"
+    checked_status      :   "1"
+    reject_status       :   "-1"
+    complete_status     :   "2"

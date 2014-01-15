@@ -2,10 +2,9 @@
     <div class="tabbable">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#tab1" data-toggle="tab">审批中</a></li>
-            <li><a href="#tab2" data-toggle="tab">已审批</a></li>
-            <li><a href="#tab3" data-toggle="tab">被驳回</a></li>
-            <li><a href="#tab4" data-toggle="tab">全部</a></li>
-            <li><a href="#tab5" data-toggle="tab">已完成</a></li>
+            <li><a href="#tab2" data-toggle="tab">被驳回</a></li>
+            <li><a href="#tab3" data-toggle="tab">已通过</a></li>
+            <li><a href="#tab4" data-toggle="tab">已结束</a></li>
             <a class="btn btn-primary" href="<%= add_expense_url %>" style="float:right">提交报销单</a>
         </ul>
         <div class="tab-content">
@@ -21,7 +20,7 @@
                         <th>操作</th>
                     </thead>
                     <tbody>
-                        <% @myInit.each do |ex| %>
+                        <% @ManageInit.each do |ex| %>
                             <tr>
                                 <td><%= ex.id %></td>
                                 <td><%= ex.money %></td>
@@ -29,7 +28,7 @@
                                 <td><%= ex.realoffs %></td>
                                 <td><%= ex.spread %></td>
                                 <td><b class="text-info"><%= ex.step_realname %></b> 审核中...</td>
-                                <td><a href="/expense/show/<%= ex.id %>" target="_blank">查看</a></td>
+                                <td><a href="/expense/show/<%= ex.id %>">查看</a></td>
                             </tr>
                         <% end %>
                     </tbody>
@@ -48,15 +47,15 @@
                         <th>操作</th>
                     </thead>
                     <tbody>
-                        <% @myChecked.each do |ex| %>
+                        <% @ManageReject.each do |ex| %>
                             <tr>
                                 <td><%= ex.id %></td>
                                 <td><%= ex.money %></td>
                                 <td><%= ex.borrow %></td>
                                 <td><%= ex.realoffs %></td>
                                 <td><%= ex.spread %></td>
-                                <td><b class="text-success">通过</b></td>
-                                <td><a href="/expense/show/<%= ex.id %>" target="_blank">查看</a></td>
+                                <td><b class="text-error">驳回</b></td>
+                                <td><a href="/expense/show/<%= ex.id %>">查看</a></td>
                             </tr>
                         <% end %>
                     </tbody>
@@ -74,15 +73,15 @@
                         <th>操作</th>
                     </thead>
                     <tbody>
-                        <% @myReject.each do |ex| %>
+                        <% @ManageChecked.each do |ex| %>
                             <tr>
                                 <td><%= ex.id %></td>
                                 <td><%= ex.money %></td>
                                 <td><%= ex.borrow %></td>
                                 <td><%= ex.realoffs %></td>
                                 <td><%= ex.spread %></td>
-                                <td><b class="text-error">驳回</b></td>
-                                <td><a href="/expense/edit/<%= ex.id %>" target="_blank">编辑</a></td>
+                                <td><b class="text-success">通过</b></td>
+                                <td><a href="/expense/show/<%= ex.id %>" target="_blank">查看</a></td>
                             </tr>
                         <% end %>
                     </tbody>
@@ -100,48 +99,22 @@
                         <th>操作</th>
                     </thead>
                     <tbody>
-                        <% @myList.each do |ex| %>
+                        <% @ManageComplete.each do |ex| %>
                             <tr>
                                 <td><%= ex.id %></td>
                                 <td><%= ex.money %></td>
                                 <td><%= ex.borrow %></td>
                                 <td><%= ex.realoffs %></td>
                                 <td><%= ex.spread %></td>
-                                <td><% if ex.status.to_i == CONFIG["init_status"].to_i %><b class="text-info"><%= ex.step_realname %></b> 审核中...<% elsif ex.status.to_i == CONFIG["checked_status"].to_i %><b class="text-success">通过</b><% elsif ex.status.to_i == CONFIG["reject_status"].to_i %><b class="text-error">驳回</b><% end %></td>
+                                <td><b class="text-success">已完成</b></td>
                                 <td>
-                                    <% if ex.status.to_i == CONFIG["reject_status"].to_i %><a href="/expense/edit/<%= ex.id %>" target="_blank">编辑</a><% else %><a href="/expense/show/<%= ex.id %>" target="_blank">查看</a><% end %>
+                                    <a href="/expense/show/<%= ex.id %>" target="_blank">查看</a>
                                 </td>
                             </tr>
                         <% end %>
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane" id="tab5">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <th>编号</th>
-                        <th>金额</th>
-                        <th>借支</th>
-                        <th>核销</th>
-                        <th>退补</th>
-                        <th>阶段</th>
-                        <th>操作</th>
-                    </thead>
-                    <tbody>
-                        <% @myComplete.each do |ex| %>
-                            <td><%= ex.id %></td>
-                            <td><%= ex.money %></td>
-                            <td><%= ex.borrow %></td>
-                            <td><%= ex.realoffs %></td>
-                            <td><%= ex.spread %></td>
-                            <td><b class="text-success">已完成</b></td>
-                            <td><a href="/expense/show/<%= ex.id %>" target="_blank">查看</a></td>
-                        <% end %>
-                    </tbody>
-                </table>
-            </div>
-
-
         </div>
     </div>
 </div>
